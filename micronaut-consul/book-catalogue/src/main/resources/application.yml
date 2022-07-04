@@ -1,0 +1,16 @@
+micronaut:
+  application:
+    name: bookCatalogue
+consul:
+  client:
+    registration:
+      enabled: true
+    defaultZone: ${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+netty:
+  default:
+    allocator:
+      max-order: 3
