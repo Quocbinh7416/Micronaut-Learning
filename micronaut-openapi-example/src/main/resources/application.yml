@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: bookService
+    name: micronautOpenapiExample
   router:
     static-resources:
       swagger:
@@ -9,15 +9,13 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  openapi:
+    config:
+      file: src/resources/myspecfile.properties
   server:
-    port: 8101
+    port: 9900
 
 netty:
   default:
     allocator:
       max-order: 3
-#consul:
-#  client:
-#    registration:
-#      enabled: true
-#    defaultZone: ${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}

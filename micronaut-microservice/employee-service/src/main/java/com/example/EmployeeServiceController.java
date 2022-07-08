@@ -7,6 +7,6 @@ public class EmployeeServiceController {
 
     @Get(uri = "/", produces = "text/plain")
     public String index() {
-        return "Example Book Service";
+        return "Example Employee Service";
     }
 }

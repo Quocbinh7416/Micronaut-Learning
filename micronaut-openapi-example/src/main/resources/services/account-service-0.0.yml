@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: Account service
+  description: Account service API
+  version: "0.0"
+servers:
+- url: http://localhost:8103/
+  description: Account Service Local
+paths:
+  /account:
+    get:
+      tags:
+        - Account Service
+      summary: Load Type
+      description: Load Type
+      operationId: indexGet2
+      parameters: []
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string

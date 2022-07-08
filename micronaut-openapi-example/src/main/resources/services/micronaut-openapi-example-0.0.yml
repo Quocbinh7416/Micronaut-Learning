@@ -1,0 +1,15 @@
+openapi: 3.0.1
+info:
+  title: micronaut-openapi-example
+  version: "0.0"
+paths:
+  /Example1:
+    get:
+      tags:
+      - Example 1
+  /Example2:
+    get:
+      tags:
+        - Example 1
+
+

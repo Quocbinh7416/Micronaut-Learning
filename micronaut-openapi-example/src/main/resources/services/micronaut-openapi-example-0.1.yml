@@ -1,0 +1,39 @@
+---
+openapi: "3.0.1"
+info:
+  title: "micronaut-openapi-example"
+  version: "0.0"
+servers:
+- url: "/"
+paths:
+  /:
+    get:
+      summary: "Index."
+      description: "Index."
+      operationId: "indexGet1"
+      parameters: []
+      responses:
+        "200":
+          description: "the http response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Void"
+                exampleSetFlag: false
+              exampleSetFlag: false
+  /master:
+    get:
+      tags:
+      - "Master Service"
+      summary: "Load Type"
+      description: "Load Type"
+      operationId: "indexGet2"
+      parameters: []
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: "string"
+                exampleSetFlag: false
+              exampleSetFlag: false
