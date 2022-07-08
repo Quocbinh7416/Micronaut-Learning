@@ -7,12 +7,14 @@ import io.swagger.models.Path;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class CombineYamlFile {
 
@@ -33,12 +35,15 @@ public class CombineYamlFile {
         OpenAPI sourceOpenAPI = source.getOpenAPI();
         OpenAPI resultOpenAPI = result.getOpenAPI();
 
+        // merge paths
         Paths sourcePaths = sourceOpenAPI.getPaths();
         Paths resultPaths = resultOpenAPI.getPaths();
-
-        resultPaths.forEach((key, value) -> sourcePaths.merge(key,value, (v1,v2)-> v2));
-
+        sourcePaths.forEach((key, value) -> resultPaths.merge(key,value, (v1,v2)-> v1));
         resultOpenAPI.setPaths(sourcePaths);
+
+        // merge components
+        Map<String,Schema> sourceSchema = sourceOpenAPI.getComponents().getSchemas();
+        Map<String,Schema> resultSchema = sourceOpenAPI.getComponents().getSchemas();
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

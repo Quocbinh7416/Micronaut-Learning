@@ -16,7 +16,8 @@ import java.util.HashMap;
 )
 public class OpenApiExampleApplication {
     public static void main(String[] args) {
-        CombineYamlFile.readSwagger();
+        MergeHashMap.doMergeHashMap2();
+//        CombineYamlFile.readSwagger();
 //        Micronaut.run(OpenApiExampleApplication.class, args);
     }
 

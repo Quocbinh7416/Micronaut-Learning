@@ -30,7 +30,7 @@ paths:
   /master:
     get:
       tags:
-        - Master Service
+        - Master Bigger
       summary: Load Type
       description: Load Type
       operationId: indexGet2

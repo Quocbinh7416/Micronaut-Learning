@@ -1,6 +1,7 @@
 package com.example.util;
 
-import java.util.LinkedHashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MergeHashMap {
 
@@ -31,6 +32,32 @@ public class MergeHashMap {
 
         // print new mapping
         System.out.println("New HashMap: "+fromMap);
+    }
+    public static void doMergeHashMap2(){
+        MapObject map1 = new MapObject();
+        map1.map.put("1", "A");
+        map1.map.put("2", "B");
+
+        MapObject map2 = new MapObject();
+        map2.map.put("2", "C");
+        map2.map.put("3", "B");
+
+        List<MapObject> mapList = new ArrayList<>();
+
+        mapList.add(map1);
+        mapList.add(map2);
+
+        Map<String, String> result = mapList.stream()
+                .filter(e -> e.map != null)
+                .map(e -> e.map)
+                .collect(Collectors.toMap(s -> s.get("key"),
+                        s -> s.get("value")));
+
+        System.out.println(result);
+    }
+
+    public static class MapObject{
+        Map<String, String> map = new HashMap<>();
     }
 
 }
