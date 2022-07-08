@@ -1,9 +1,12 @@
 package com.example;
 
 import com.example.util.CombineYamlFile;
+import com.example.util.MergeHashMap;
 import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.*;
 import io.swagger.v3.oas.annotations.info.*;
+
+import java.util.HashMap;
 
 @OpenAPIDefinition(
         info = @Info(
@@ -14,6 +17,7 @@ import io.swagger.v3.oas.annotations.info.*;
 public class OpenApiExampleApplication {
     public static void main(String[] args) {
         CombineYamlFile.readSwagger();
-        Micronaut.run(OpenApiExampleApplication.class, args);
+//        Micronaut.run(OpenApiExampleApplication.class, args);
     }
+
 }

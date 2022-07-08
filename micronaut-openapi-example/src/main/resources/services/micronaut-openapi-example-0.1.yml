@@ -8,6 +8,8 @@ servers:
 paths:
   /:
     get:
+      tags:
+      - "Route Controller"
       summary: "Index."
       description: "Index."
       operationId: "indexGet1"
@@ -37,3 +39,11 @@ paths:
                 type: "string"
                 exampleSetFlag: false
               exampleSetFlag: false
+  /Example1:
+    get:
+      tags:
+      - "Example 1"
+  /Example2:
+    get:
+      tags:
+      - "Example 1"

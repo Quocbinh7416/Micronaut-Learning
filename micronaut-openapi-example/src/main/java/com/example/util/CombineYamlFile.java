@@ -1,16 +1,18 @@
 package com.example.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import io.swagger.models.Path;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 
 public class CombineYamlFile {
 
@@ -32,10 +34,11 @@ public class CombineYamlFile {
         OpenAPI resultOpenAPI = result.getOpenAPI();
 
         Paths sourcePaths = sourceOpenAPI.getPaths();
-        Paths resultPaths = sourceOpenAPI.getPaths();
+        Paths resultPaths = resultOpenAPI.getPaths();
 
+        resultPaths.forEach((key, value) -> sourcePaths.merge(key,value, (v1,v2)-> v2));
 
-        resultOpenAPI.paths(sourceOpenAPI.getPaths());
+        resultOpenAPI.setPaths(sourcePaths);
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
