@@ -6,6 +6,14 @@ info:
 servers:
 - url: "/"
 paths:
+  /Example1:
+    get:
+      tags:
+      - "Example 1"
+  /Example2:
+    get:
+      tags:
+      - "Example 1"
   /:
     get:
       tags:
@@ -39,11 +47,108 @@ paths:
                 type: "string"
                 exampleSetFlag: false
               exampleSetFlag: false
-  /Example1:
-    get:
-      tags:
-      - "Example 1"
-  /Example2:
-    get:
-      tags:
-      - "Example 1"
+components:
+  schemas:
+    AccessibleObject:
+      type: "object"
+      properties:
+        accessible:
+          type: "boolean"
+          deprecated: true
+          exampleSetFlag: false
+        annotations:
+          type: "array"
+          exampleSetFlag: false
+          items:
+            $ref: "#/components/schemas/Annotation"
+            exampleSetFlag: false
+        declaredAnnotations:
+          type: "array"
+          exampleSetFlag: false
+          items:
+            $ref: "#/components/schemas/Annotation"
+            exampleSetFlag: false
+      exampleSetFlag: false
+    AccountDTO:
+      type: "object"
+      properties:
+        accountId:
+          type: "integer"
+          format: "int64"
+          exampleSetFlag: false
+        username:
+          type: "string"
+          exampleSetFlag: false
+        password:
+          type: "string"
+          exampleSetFlag: false
+        accountStatus:
+          type: "integer"
+          format: "int32"
+          exampleSetFlag: false
+        passwordExpirationDate:
+          type: "string"
+          format: "date-time"
+          exampleSetFlag: false
+        email:
+          type: "string"
+          exampleSetFlag: false
+        updateDate:
+          type: "string"
+          format: "date-time"
+          exampleSetFlag: false
+        deleteFlag:
+          type: "boolean"
+          exampleSetFlag: false
+        telephoneNumber:
+          type: "string"
+          exampleSetFlag: false
+        accountType:
+          type: "integer"
+          format: "int32"
+          exampleSetFlag: false
+        changePasswordToken:
+          type: "string"
+          exampleSetFlag: false
+        changePasswordExpirationDate:
+          type: "string"
+          format: "date-time"
+          exampleSetFlag: false
+        verifiedFlag:
+          type: "boolean"
+          exampleSetFlag: false
+        customerCode:
+          type: "string"
+          exampleSetFlag: false
+        newPass:
+          type: "string"
+          exampleSetFlag: false
+        oldPass:
+          type: "string"
+          exampleSetFlag: false
+        confirmNewPass:
+          type: "string"
+          exampleSetFlag: false
+        socialToken:
+          type: "string"
+          exampleSetFlag: false
+        accountSource:
+          type: "integer"
+          format: "int32"
+          exampleSetFlag: false
+        customerId:
+          type: "integer"
+          format: "int64"
+          exampleSetFlag: false
+        rmsToken:
+          $ref: "#/components/schemas/JwtAuthenticationResponse"
+          exampleSetFlag: false
+        uuid:
+          type: "string"
+          format: "uuid"
+          exampleSetFlag: false
+        brand:
+          type: "string"
+          exampleSetFlag: false
+      exampleSetFlag: false
+  extensions: {}

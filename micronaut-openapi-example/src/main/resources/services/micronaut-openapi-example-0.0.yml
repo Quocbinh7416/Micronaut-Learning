@@ -11,5 +11,21 @@ paths:
     get:
       tags:
         - Example 1
+components:
+  schemas:
+    AccessibleObject:
+      type: object
+      properties:
+        accessible:
+          type: boolean
+          deprecated: true
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+        declaredAnnotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
 
 

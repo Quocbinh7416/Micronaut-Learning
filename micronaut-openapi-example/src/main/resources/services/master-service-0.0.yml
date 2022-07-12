@@ -41,3 +41,63 @@ paths:
             text/plain:
               schema:
                 type: string
+components:
+  schemas:
+    AccountDTO:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+        accountStatus:
+          type: integer
+          format: int32
+        passwordExpirationDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+        updateDate:
+          type: string
+          format: date-time
+        deleteFlag:
+          type: boolean
+        telephoneNumber:
+          type: string
+        accountType:
+          type: integer
+          format: int32
+        changePasswordToken:
+          type: string
+        changePasswordExpirationDate:
+          type: string
+          format: date-time
+        verifiedFlag:
+          type: boolean
+        customerCode:
+          type: string
+        newPass:
+          type: string
+        oldPass:
+          type: string
+        confirmNewPass:
+          type: string
+        socialToken:
+          type: string
+        accountSource:
+          type: integer
+          format: int32
+        customerId:
+          type: integer
+          format: int64
+        rmsToken:
+          $ref: '#/components/schemas/JwtAuthenticationResponse'
+        uuid:
+          type: string
+          format: uuid
+        brand:
+          type: string

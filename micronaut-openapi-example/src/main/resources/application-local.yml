@@ -9,8 +9,11 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+  openapi:
+    config:
+      file: src/resources/myspecfile.properties
   server:
-    port: 9900
+    port: 8989
 
 netty:
   default:

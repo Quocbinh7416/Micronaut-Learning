@@ -3,18 +3,13 @@ package com.example.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import io.swagger.models.Path;
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.PathItem;
-import io.swagger.v3.oas.models.Paths;
-import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class CombineYamlFile {
 
@@ -36,14 +31,26 @@ public class CombineYamlFile {
         OpenAPI resultOpenAPI = result.getOpenAPI();
 
         // merge paths
-        Paths sourcePaths = sourceOpenAPI.getPaths();
-        Paths resultPaths = resultOpenAPI.getPaths();
-        sourcePaths.forEach((key, value) -> resultPaths.merge(key,value, (v1,v2)-> v1));
-        resultOpenAPI.setPaths(sourcePaths);
+        sourceOpenAPI.getPaths().forEach(resultOpenAPI::path);
+        /**
+         * 2nd way
+         */
+//        Paths sourcePaths = sourceOpenAPI.getPaths();
+//        Paths resultPaths = resultOpenAPI.getPaths();
+//        sourcePaths.forEach((key, value) -> resultPaths.merge(key,value, (v1,v2)-> v1));
+//        resultOpenAPI.setPaths(sourcePaths);
 
         // merge components
-        Map<String,Schema> sourceSchema = sourceOpenAPI.getComponents().getSchemas();
-        Map<String,Schema> resultSchema = sourceOpenAPI.getComponents().getSchemas();
+        Components sourceComponents = sourceOpenAPI.getComponents();
+        Components resultComponents = resultOpenAPI.getComponents();
+        sourceComponents.getSchemas().forEach(resultComponents::addSchemas);
+        /**
+         * 2nd way
+         */
+//        Map<String, Schema> sourceSchemas = sourceOpenAPI.getComponents().getSchemas();
+//        Map<String, Schema> resultSchemas = resultOpenAPI.getComponents().getSchemas();
+//        sourceSchemas.forEach((key, value) -> resultSchemas.merge(key, value, (v1, v2) -> v1));
+//        resultOpenAPI.getComponents().setSchemas(resultSchemas);
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

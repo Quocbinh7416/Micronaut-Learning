@@ -11,14 +11,14 @@ import java.util.HashMap;
 @OpenAPIDefinition(
         info = @Info(
                 title = "micronaut-openapi-example",
-                version = "0.0"
+                version = "${api.version}"
         )
 )
 public class OpenApiExampleApplication {
     public static void main(String[] args) {
-        MergeHashMap.doMergeHashMap2();
-//        CombineYamlFile.readSwagger();
-//        Micronaut.run(OpenApiExampleApplication.class, args);
+//        MergeHashMap.doMergeHashMap2();
+        CombineYamlFile.readSwagger();
+        Micronaut.run(OpenApiExampleApplication.class, args);
     }
 
 }
